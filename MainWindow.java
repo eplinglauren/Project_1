@@ -19,13 +19,12 @@ public class MainWindow extends JFrame {
 	private String word;
 	private String visible;
 	
-	private static String[] threes = {"cat", "dog", "bat", "tag", "bag", "bay", "hay", "mug", "can", "tab", "wax", "rat"};
-	private static String[] fours = {"love", "hate", "work", "code", "card", "bath", "late"};
-
-	public MainWindow(String toGuess) {
+	public MainWindow(String difficulty) {
 		remainingGuesses = 10;
 		wrongGuesses = "";
-		word = toGuess;
+		Word guessThis= new Word(difficulty);
+		word= guessThis.returnWord();
+		
 
 		visible = "";
 
@@ -149,27 +148,46 @@ public class MainWindow extends JFrame {
 	    menu.setTitle("Main Menu");
 		menu.setVisible(true);
 		
-		final JButton easy = new JButton("Easy");
+		final JRadioButton easy = new JRadioButton("Easy");
 		easy.setLocation(0,0);
-		easy.setSize(100, 150);
+		easy.setSize(100, 50);
 		menu.add(easy);
 		easy.addActionListener(new ActionListener() 
 		{
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				int len  = 0 + (int)(Math.random()*1); 
-				int wordLoc = 0;
-				if(len==0) 
-				{
-					wordLoc = 0 + (int)(Math.random()* (threes.length));
-					new MainWindow(threes[wordLoc]);
-				}
-				else 
-				{
-					wordLoc = 0 + (int)(Math.random()* (fours.length));
-					new MainWindow(fours[wordLoc]);
-				}
+				new MainWindow("easy");
+			}
+			}
+		);
+		final JRadioButton medium = new JRadioButton("Medium");
+		medium.setVisible(true);
+		medium.setLocation(0,50);
+		medium.setSize(100, 50);
+		menu.add(medium);
+		medium.addActionListener(new ActionListener() 
+		{
+			@Override
+			public void actionPerformed(ActionEvent m)
+			{
+				new MainWindow("medium");
+				
+			}
+			}
+		);
+		final JRadioButton hard = new JRadioButton("Hard");
+		hard.setVisible(true);
+		hard.setLocation(0,100);
+		hard.setSize(100, 50);
+		menu.add(hard);
+		hard.addActionListener(new ActionListener() 
+		{
+			@Override
+			public void actionPerformed(ActionEvent h)
+			{
+				new MainWindow("hard");
+				
 			}
 			}
 		);
