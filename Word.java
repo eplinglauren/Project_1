@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Word extends MainWindow{
+public class Word implements Words{
 	private String difficulty;
 	//creating lists of possible words
 	private String[] easy= {"cat", "java", "tree", "mice", "corn", "tile", "poke", "hey", "farm", "sky", "shoe", "ere", "back", "wave", "are"};
@@ -24,7 +24,7 @@ public class Word extends MainWindow{
 	 goes to the spot in the array specified by the previously picked random number and assigns that value to String word
 	 @return randomly assigned word
 	 */
-	public String assignWord()
+	public String returnWord()
 	{
 		String word;
 		Random randomGenerator = new Random();
