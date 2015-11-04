@@ -1,3 +1,4 @@
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -8,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.JButton;
+
 
 public class MainWindow extends JFrame {
 	
@@ -15,6 +18,9 @@ public class MainWindow extends JFrame {
 	private String wrongGuesses;
 	private String word;
 	private String visible;
+	
+	private static String[] threes = {"cat", "dog", "bat", "tag", "bag", "bay", "hay", "mug", "can", "tab", "wax", "rat"};
+	private static String[] fours = {"love", "hate", "work", "code", "card", "bath", "late"};
 
 	public MainWindow(String toGuess) {
 		remainingGuesses = 10;
@@ -41,12 +47,31 @@ public class MainWindow extends JFrame {
 		southPanel.add(input);
 		southPanel.add(wrong);
 		
+		final JButton quit = new JButton("Quit");
+		final JButton newGame = new JButton("New Game");
+		JPanel northPanel = new JPanel(new GridLayout(1,2));
+		northPanel.add(newGame);
+		northPanel.add(quit);
+		
+		corePanel.add(northPanel,BorderLayout.NORTH);
 		corePanel.add(southPanel, BorderLayout.SOUTH);
 		
 		final HangmanFigure hf = new HangmanFigure();
 		corePanel.add(hf, BorderLayout.CENTER);
-
+		
 		this.add(corePanel, BorderLayout.CENTER);
+		
+		newGame.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+					corePanel.setVisible(false);
+				    mainMenu();
+					input.setEnabled(false);
+			}
+		});
 		
 		input.addActionListener(new ActionListener() {
 
@@ -87,6 +112,7 @@ public class MainWindow extends JFrame {
 						else {
 							status.setText("You lost: the word was "+word);
 							input.setEnabled(false);
+							hf.set();							
 						}
 					}
 					else {
@@ -117,7 +143,53 @@ public class MainWindow extends JFrame {
 		this.setVisible(true);
 	}
 	
+	public static void mainMenu() {
+		JFrame menu = new JFrame();
+		menu.setSize(301, 330);
+	    menu.setTitle("Main Menu");
+		menu.setVisible(true);
+		
+		final JButton easy = new JButton("Easy");
+		easy.setLocation(0,0);
+		easy.setSize(100, 150);
+		menu.add(easy);
+		easy.addActionListener(new ActionListener() 
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				int len  = 0 + (int)(Math.random()*1); 
+				int wordLoc = 0;
+				if(len==0) 
+				{
+					wordLoc = 0 + (int)(Math.random()* (threes.length));
+					new MainWindow(threes[wordLoc]);
+				}
+				else 
+				{
+					wordLoc = 0 + (int)(Math.random()* (fours.length));
+					new MainWindow(fours[wordLoc]);
+				}
+			}
+			}
+		);
+		
+		
+		final JButton quit = new JButton("Quit");
+		quit.setLocation(0, 151);
+		quit.setSize(150,150);
+		menu.add(quit);
+		quit.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				System.exit(0);
+			}
+		});
+	}
+	
 	public static void main(String[] args) {
-		new MainWindow("cat");
+		mainMenu();
 	}
 }
