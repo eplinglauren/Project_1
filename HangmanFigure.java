@@ -1,4 +1,3 @@
-import java.awt.geom.Arc2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
@@ -15,11 +14,11 @@ public class HangmanFigure extends JPanel {
 		guesses = 0;
 		setPreferredSize(new Dimension(300, 300));
 		setOpaque(true);
-		setBackground(Color.BLUE);
 	}
 	
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D)g;
+		setBackground(Color.cyan);
 		
 		//stand set up
 		int[] galBaseX = {30,80,200,150};
@@ -55,6 +54,7 @@ public class HangmanFigure extends JPanel {
 		Ellipse2D.Double right_eye = new Ellipse2D.Double(165, 80, 6, 6);
 		Ellipse2D.Double  head = new Ellipse2D.Double(148.5,70,28,38);
 		Ellipse2D.Double body = new Ellipse2D.Double(145.5,105,35,80);
+		Line2D.Double mouth = new Line2D.Double(153, 90, 165, 90);
 		
 		Polygon rightArm = new Polygon(right_arm_x, right_arm_y, 4);
 		Polygon leftArm = new Polygon(left_arm_x,left_arm_y,4);
@@ -67,7 +67,10 @@ public class HangmanFigure extends JPanel {
 		
 		Rectangle2D.Double shirt = new Rectangle2D.Double(146, 118, 35, 40);
 		Rectangle2D.Double skirt = new Rectangle2D.Double(146, 154, 35, 32);
-		Line2D.Double mouth = new Line2D.Double(153, 90, 165, 90);
+		Ellipse2D.Double left_shoe = new Ellipse2D.Double(128, 205, 30, 13);
+		Ellipse2D.Double right_shoe = new Ellipse2D.Double(178, 205, 30, 13);
+		
+		Rectangle2D.Double lose_sign = new Rectangle2D.Double(0, 0, 300, 300);
 		
 		g2.setColor(new Color(153,61,25));
 		g2.fill(post);
@@ -145,21 +148,43 @@ public class HangmanFigure extends JPanel {
 			g2.draw(rightLeg);
 		}
 		
+		//shirt
 		if(guesses > 6) {
 			g2.setColor(new Color(255, 190, 190));
 			g2.fill(shirt);
 			g2.draw(shirt);
 		}
 		
+		//skirt
 		if(guesses > 7) {
 			g2.setColor(new Color(0, 0, 255));
 			g2.fill(skirt);
 			g2.draw(skirt);
 		}
+		
+		//left shoe
+		if(guesses > 8) {
+			g2.setColor(new Color(0, 0, 0));
+			g2.fill(left_shoe);
+			g2.draw(left_shoe);
+		}
+		
+		if(guesses > 9) {
+			g2.fill(right_shoe);
+			g2.draw(right_shoe);
+		}
+		
+		if(guesses > 10) {
+			//g2.setColor(new Color(0, 0, 0));
+			g2.fill(lose_sign);
+			g2.draw(lose_sign);
+			g2.setColor(Color.WHITE);
+			g2.drawString("YOU LOSE!", 125, 125);
+		}
 	}
-	
 	public void set() {
 		guesses++;
 		paintComponent(getGraphics());
 	}
+	
 }
