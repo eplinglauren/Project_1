@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
-import javax.swing.JRadioButton;
 
 public class MainWindow extends JFrame {
 	
@@ -148,9 +147,9 @@ public class MainWindow extends JFrame {
 	    menu.setTitle("Main Menu");
 		menu.setVisible(true);
 		
-		final JRadioButton easy = new JRadioButton("Easy");
+		final JButton easy = new JButton("Easy");
 		easy.setLocation(0,0);
-		easy.setSize(100, 50);
+		easy.setSize(150, 50);
 		menu.add(easy);
 		easy.addActionListener(new ActionListener() 
 		{
@@ -161,10 +160,10 @@ public class MainWindow extends JFrame {
 			}
 			}
 		);
-		final JRadioButton medium = new JRadioButton("Medium");
+		final JButton medium = new JButton("Medium");
 		medium.setVisible(true);
 		medium.setLocation(0,50);
-		medium.setSize(100, 50);
+		medium.setSize(150, 50);
 		menu.add(medium);
 		medium.addActionListener(new ActionListener() 
 		{
@@ -176,10 +175,10 @@ public class MainWindow extends JFrame {
 			}
 			}
 		);
-		final JRadioButton hard = new JRadioButton("Hard");
+		final JButton hard = new JButton("Hard");
 		hard.setVisible(true);
 		hard.setLocation(0,100);
-		hard.setSize(100, 50);
+		hard.setSize(150, 50);
 		menu.add(hard);
 		hard.addActionListener(new ActionListener() 
 		{
