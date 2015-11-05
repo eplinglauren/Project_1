@@ -4,7 +4,7 @@ public class Word implements Words{
 	private String difficulty;
 	//creating lists of possible words
 	private String[] easy= {"cat", "java", "tree", "mice", "corn", "tile", "poke", "hey", "farm", "sky", "shoe", "ere", "back", "wave", "are"};
-	private String[] medium= {"horse", "alpaca", "system", "hungry", "window", "curtain", "winner", "phone", "cheese", "writing", "barley", "button", "wrong", "right", "helllo"};
+	private String[] medium= {"horse", "alpaca", "system", "hungry", "window", "curtain", "winner", "phone", "cheese", "writing", "barley", "button", "wrong", "right", "hello"};
 	private String[] hard= {"pavement", "plantain", "splendid", "forwards", "forewarn", "leathers", "mustangs", "skylight", "backspace", "interface", "implement", "diamonds", "bicycles", "landscape", "cisterns"};
 	
 	/**
@@ -14,7 +14,6 @@ public class Word implements Words{
 	
 	public Word(String difficult)
 	{
-		super(difficult);
 		difficulty= difficult;
 	}
 	
