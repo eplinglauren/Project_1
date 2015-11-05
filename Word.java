@@ -28,14 +28,14 @@ public class Word implements Words{
 		String word;
 		Random randomGenerator = new Random();
 		int randomInt= randomGenerator.nextInt(15);
-		if (difficulty=="easy")	{
-		word= easy[randomInt];
+		if (difficulty=="hard")	{
+		word= hard[randomInt];
 		}
-		if (difficulty=="medium"){
+		else if (difficulty=="medium"){
 		word= medium[randomInt];
 		}
 		else{
-		word= hard[randomInt];
+		word= easy[randomInt];
 		}
 		return word;
 	}
