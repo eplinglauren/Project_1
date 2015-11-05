@@ -72,6 +72,10 @@ public class HangmanFigure extends JPanel {
 		
 		Rectangle2D.Double lose_sign = new Rectangle2D.Double(0, 0, 300, 300);
 		
+		Rectangle2D.Double background= new Rectangle2D.Double(0, 0, 300, 300);
+		g2.setColor(Color.CYAN);
+		g2.fill(background);
+		
 		g2.setColor(new Color(153,61,25));
 		g2.fill(post);
 		g2.fill(frontBase);
